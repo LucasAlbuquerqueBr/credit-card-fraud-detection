@@ -13,6 +13,7 @@ The primary evaluation metric is **PR-AUC (Average Precision)**, which is more i
 ## Repository structure
 - `src/` — Python script to train and evaluate the model
 - `notebooks/` — Kaggle notebook with EDA and experiments
+- `powerbi/` — Power BI dashboard (`.pbix`) + screenshots
 
 ## Dataset
 Kaggle: **Credit Card Fraud Detection** (mlg-ulb/creditcardfraud)  
@@ -23,8 +24,42 @@ Kaggle: **Credit Card Fraud Detection** (mlg-ulb/creditcardfraud)
 1. Create a Kaggle Notebook and add the dataset `mlg-ulb/creditcardfraud`.
 2. Run the notebook in `notebooks/`.
 
-### Option B — Local (if you have the dataset file)
+### Option B — Local (if you have `creditcard.csv`)
 1. Place `creditcard.csv` in the project root (or adjust the path in the script).
 2. Install dependencies:
    ```bash
    pip install -r requirements.txt
+
+## Power BI Dashboard
+This repository includes a key results and support decision-making.
+
+**What you can see in the dashboard**
+- Dataset imbalance (fraud rate)
+- Model performance (PR-AUC, ROC-AUC, confusion matrix)
+- Threshold tradeoff (how alerts increase/decrease as you change the decision threshold)
+- Top flagged transactions by predicted fraud probability
+
+**File**
+- `powerbi/credit-fraud-dashboard.pbix`
+
+**How to open**
+1. Install Power BI Desktop (Windows).
+2. Open Power BI Desktop → File → Open → select the `.pbix` file.
+
+**Screenshots (recommended)**
+- `powerbi/screenshots/overview.png`
+- `powerbi/screenshots/model_performance.png`
+
+**Note about large files**
+If the `.pbix` becomes large, use Git LFS (recommended for big binary files).
+
+## Results
+**Model selection (Cross-validation)**
+- I compared:
+  - RandomForest + SMOTE
+  - RandomForest + `class_weight="balanced"`
+- I selected **RandomForest + SMOTE** because it achieved a higher mean **PR-AUC** in Stratified 5-Fold CV.
+
+**Unseen test set**
+- ROC-AUC: 0.9713
+- PR-AUC (Average Precision): 0.8577
