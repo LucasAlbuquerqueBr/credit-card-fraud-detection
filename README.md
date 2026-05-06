@@ -30,15 +30,6 @@ Kaggle: **Credit Card Fraud Detection** (mlg-ulb/creditcardfraud)
    ```bash
    pip install -r requirements.txt
 
-## Power BI Dashboard
-This repository includes a key results and support decision-making.
-
-**What you can see in the dashboard**
-- Dataset imbalance (fraud rate)
-- Model performance (PR-AUC, ROC-AUC, confusion matrix)
-- Threshold tradeoff (how alerts increase/decrease as you change the decision threshold)
-- Top flagged transactions by predicted fraud probability
-
 **File**
 - `powerbi/credit-fraud-dashboard.pbix`
 
